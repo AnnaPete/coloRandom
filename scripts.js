@@ -11,7 +11,7 @@ var colorLabel3 = document.querySelector('.color-label-3')
 var colorLabel4 = document.querySelector('.color-label-4')
 var colorLabel5 = document.querySelector('.color-label-5')
 var newPaletteButton = document.querySelector('.new-palette-button')
-
+var saveButton = document.querySelector('.save-palette-button')
 
 // classes belong here
 class Color {
@@ -54,11 +54,7 @@ class Palette {
     }
   }
 }
-//goal: create a method - any time a color is clicked, the lock switches (toggle, click)
-//no need for functionality now
 
-
-//global variables live here
 var currentPalette = null;
 var savedPalettesList = [];
 var displayOnLoadPalette = new Palette()
@@ -68,8 +64,14 @@ currentPalette = displayOnLoadPalette
 // event listeners live here
 window.addEventListener('load', displayPalette)
 newPaletteButton.addEventListener('click', newPalette)
+saveButton.addEventListener('click', savePalette)
+
 
 // event handlers belong here
+function savePalette() {
+  savedPalettesList.push(currentPalette);
+}
+
 function displayPalette(){
   colorBox1.style.backgroundColor = currentPalette.colors[0].hexCode
   colorLabel1.innerText = currentPalette.colors[0].hexCode
