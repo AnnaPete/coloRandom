@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+}
+
+.whole-page-container {
+  height: 100vh;
+  width:100vw;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.color-random-container {
+  height: 100vh;
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: solid black 2px;
+}
+
+.title-container {
+  height: 33vh;
+  width: 75vw;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  font-size: 5rem;
+  display:flex;
+}
+
+.color-palette-row-container {
+  height: 34vh;
+  width: 75vw;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.color-card{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-box {
+  background-color: yellow;
+  height: 150px;
+  width: 150px;
+  border: solid black 2px;
+}
+
+.buttons-container {
+  height: 33vh;
+  width: 75vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center
+}
+
+.saved-palettes-container {
+  height: 100vh;
+  width: 25vw;
+  display: flex;
+}
+
+.new-palette-button {
+  width: 12vw;
+  height: 8vh;
+  font-size: 1.5rem;
+  box-shadow: 3px 3px;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.save-palette-button {
+  width: 12vw;
+  height: 8vh;
+  font-size: 1.5rem;
+  box-shadow: 3px 3px;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.saved-palettes-title-container {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
