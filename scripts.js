@@ -47,11 +47,16 @@ class Palette {
   }
   /// this needs work!!!!!!!!!!!!
   lockColor() {
-    if (this.locked === false) {
-      this.locked = true
+    if (!this.colors[0].locked) {
+      this.colors[0].locked = true;
+    } else {
+      this.colors[0].locked = false;
     }
   }
 }
+//goal: create a method - any time a color is clicked, the lock switches (toggle, click)
+//no need for functionality now
+
 
 //global variables live here
 var currentPalette = null;
