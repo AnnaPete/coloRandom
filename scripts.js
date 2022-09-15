@@ -19,6 +19,7 @@ var savedColorBox5 = document.querySelector('.saved-color-box-5')
 var deleteButton = document.querySelector('.delete-button-1')
 var savedPalettesDisplayContainer = document.querySelector('.saved-palettes-display-container')
 var colorCard = document.querySelector('.color-card')
+var deleteButton = document.querySelector()
 
 // classes belong here
 class Color {
@@ -43,10 +44,12 @@ class Color {
 class Palette {
   constructor() {
     this.colors = [new Color, new Color, new Color, new Color, new Color]
-    this.id = Date.now()
+    this.id = 0
   }
 
   changeColors() {
+    console.log("this.id", this.id)
+    this.id++ 
     for (var i=0; i < this.colors.length; i++) {
     if (this.colors[i].locked === false) {
       this.colors[i] = new Color;
@@ -81,6 +84,7 @@ colorBox5.addEventListener('click', lockColor)
 
 // event handlers belong here
 function savePalette() {
+  this.id++
   savedPalettesList.push(currentPalette);
   showSavedPalette();
 }
@@ -110,7 +114,7 @@ function showSavedPalette() {
   <div class="mini-palette-box saved-color-box-4" style="background-color:${savedColor4}"></div>
   <div class="mini-palette-box saved-color-box-5" style="background-color:${savedColor5}"></div>
   <div class="delete-button-container">
-    <h4 class="delete-button-1 delete-button">🗑</h4>
+    <h4 id="${this.id}" class="delete-button">🗑</h4>
   </div>
 </div>`;
 }
