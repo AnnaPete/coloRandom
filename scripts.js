@@ -106,20 +106,21 @@ function deleteSavedPalette(event) {
   // console.log("target", event.target)
   var targetEventId = event.target.id
   // console.log("target id", targetEventId)
-  // console.log("b4", savedPalettesList)
+  console.log("b4", savedPalettesList)
   for(var i = 0; i < savedPalettesList.length; i++) {
-    if (targetEventId-- === savedPalettesList[i].id) {
+    if (targetEventId === savedPalettesList[i].id) {
       savedPalettesList.splice(i, 1)
     }
-    // console.log("after", savedPalettesList)
+    console.log("after", savedPalettesList)
   }
 
 }
 
 function savePalette() {
-  this.id++
-console.log(this.id)
+  currentPalette.id++
+console.log(currentPalette)
   savedPalettesList.push(currentPalette);
+  console.log("savedPalettesList", savedPalettesList)
   showSavedPalette();
 }
 
