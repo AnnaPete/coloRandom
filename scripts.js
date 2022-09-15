@@ -12,6 +12,13 @@ var colorLabel4 = document.querySelector('.color-label-4')
 var colorLabel5 = document.querySelector('.color-label-5')
 var newPaletteButton = document.querySelector('.new-palette-button')
 var saveButton = document.querySelector('.save-palette-button')
+var savedColorBox1 = document.querySelector('.saved-color-box-1')
+var savedColorBox2 = document.querySelector('.saved-color-box-2')
+var savedColorBox3 = document.querySelector('.saved-color-box-3')
+var savedColorBox4 = document.querySelector('.saved-color-box-4')
+var savedColorBox5 = document.querySelector('.saved-color-box-5')
+var deleteButton = document.querySelector('.delete-button-1')
+var savedPalettesDisplayContainer = document.querySelector('.saved-palettes-display-container')
 
 // classes belong here
 class Color {
@@ -70,6 +77,33 @@ saveButton.addEventListener('click', savePalette)
 // event handlers belong here
 function savePalette() {
   savedPalettesList.push(currentPalette);
+  console.log(savedPalettesList)
+  showSavedPalette();
+}
+
+function showSavedPalette() {
+  // access the hex codes in the savedPalette list
+  // create variables for the accessed hex codes
+  // interpolate variables into innerHTML
+
+  var savedColor1 = savedPalettesList[0].colors[0].hexCode;
+  var savedColor2 = savedPalettesList[0].colors[1].hexCode;
+  var savedColor3 = savedPalettesList[0].colors[2].hexCode;
+  var savedColor4 = savedPalettesList[0].colors[3].hexCode;
+  var savedColor5 = savedPalettesList[0].colors[4].hexCode;
+  
+  //savedColorBox1.style.backgroundColor = savedPalettesList[0].colors[0].hexCode
+  savedPalettesDisplayContainer.innerHTML += 
+  `<div class="saved-palette-row">
+  <div class="mini-palette-box saved-color-box-1" style="background-color:${savedColor1}"></div>
+  <div class="mini-palette-box saved-color-box-2" style="background-color:${savedColor2}"></div>
+  <div class="mini-palette-box saved-color-box-3" style="background-color:${savedColor3}"></div>
+  <div class="mini-palette-box saved-color-box-4" style="background-color:${savedColor4}"></div>
+  <div class="mini-palette-box saved-color-box-5" style="background-color:${savedColor5}"></div>
+  <div class="delete-button-container">
+    <h4 class="delete-button-1 delete-button">🗑</h4>
+  </div>
+</div>`;
 }
 
 function displayPalette(){
