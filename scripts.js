@@ -19,7 +19,18 @@ var savedColorBox5 = document.querySelector('.saved-color-box-5')
 var deleteButton = document.querySelector('.delete-button-1')
 var savedPalettesDisplayContainer = document.querySelector('.saved-palettes-display-container')
 var colorCard = document.querySelector('.color-card')
-var deleteButton = document.querySelector()
+// var deleteButton = document.querySelector(`#${this.id}`)
+
+// goal: remove a selected save palette from DOM
+//use splice method at the index
+//step 1 - create var that accesses the right 
+//2 - event listener on the var
+//3 - test event listener   event.target
+//4 - if all g, write logic in function to look 4 id of var
+//5 - in function, add 4 loop w/ conditional that evaluates if id of var matches parent element?
+//6 - splice at i of saved palettes list
+//7 - clear inner html
+//8 - run display function
 
 // classes belong here
 class Color {
@@ -81,10 +92,33 @@ colorBox2.addEventListener('click', lockColor)
 colorBox3.addEventListener('click', lockColor)
 colorBox4.addEventListener('click', lockColor)
 colorBox5.addEventListener('click', lockColor)
+// deleteButton.addEventListener('click', deleteSavedPalette)
+savedPalettesDisplayContainer.addEventListener('click', deleteSavedPalette)
 
 // event handlers belong here
+function deleteSavedPalette(event) {
+  var targetEvent = event.target
+  // console.log("target event 1", targetEvent)
+  targetEvent = targetEvent.parentElement.parentElement
+  // console.log("target event 2", targetEvent)
+  // console.log("children", this.children)
+  // console.log("event", event)
+  // console.log("target", event.target)
+  var targetEventId = event.target.id
+  // console.log("target id", targetEventId)
+  // console.log("b4", savedPalettesList)
+  for(var i = 0; i < savedPalettesList.length; i++) {
+    if (targetEventId-- === savedPalettesList[i].id) {
+      savedPalettesList.splice(i, 1)
+    }
+    // console.log("after", savedPalettesList)
+  }
+
+}
+
 function savePalette() {
   this.id++
+console.log(this.id)
   savedPalettesList.push(currentPalette);
   showSavedPalette();
 }
@@ -114,7 +148,7 @@ function showSavedPalette() {
   <div class="mini-palette-box saved-color-box-4" style="background-color:${savedColor4}"></div>
   <div class="mini-palette-box saved-color-box-5" style="background-color:${savedColor5}"></div>
   <div class="delete-button-container">
-    <h4 id="${this.id}" class="delete-button">🗑</h4>
+    <h4 id="${savedPalettesList.length}" class="delete-button">🗑</h4>
   </div>
 </div>`;
 }
