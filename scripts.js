@@ -1,5 +1,4 @@
 // Store dom elements in variables here
-
 var colorBox1 = document.querySelector('.color-box-1')
 var colorBox2 = document.querySelector('.color-box-2')
 var colorBox3 = document.querySelector('.color-box-3')
@@ -41,18 +40,18 @@ class Color {
 }
 
 class Palette {
-  constructor(){
+  constructor() {
     this.colors = [new Color, new Color, new Color, new Color, new Color]
     this.id = Date.now()
   }
 
   changeColors() {
     for (var i=0; i < this.colors.length; i++)
-    if (this.colors[i].locked === false){
+    if (this.colors[i].locked === false) {
       this.colors[i] = new Color;
     }
   }
-  /// this needs work!!!!!!!!!!!!
+
   lockColor() {
     if (!this.colors[0].locked) {
       this.colors[0].locked = true;
@@ -67,32 +66,23 @@ var savedPalettesList = [];
 var displayOnLoadPalette = new Palette()
 currentPalette = displayOnLoadPalette
 
-
 // event listeners live here
 window.addEventListener('load', displayPalette)
 newPaletteButton.addEventListener('click', newPalette)
 saveButton.addEventListener('click', savePalette)
 
-
 // event handlers belong here
 function savePalette() {
   savedPalettesList.push(currentPalette);
-  console.log(savedPalettesList)
   showSavedPalette();
 }
 
 function showSavedPalette() {
-  // access the hex codes in the savedPalette list
-  // create variables for the accessed hex codes
-  // interpolate variables into innerHTML
-
   var savedColor1 = savedPalettesList[0].colors[0].hexCode;
   var savedColor2 = savedPalettesList[0].colors[1].hexCode;
   var savedColor3 = savedPalettesList[0].colors[2].hexCode;
   var savedColor4 = savedPalettesList[0].colors[3].hexCode;
   var savedColor5 = savedPalettesList[0].colors[4].hexCode;
-  
-  //savedColorBox1.style.backgroundColor = savedPalettesList[0].colors[0].hexCode
   savedPalettesDisplayContainer.innerHTML += 
   `<div class="saved-palette-row">
   <div class="mini-palette-box saved-color-box-1" style="background-color:${savedColor1}"></div>
@@ -106,7 +96,7 @@ function showSavedPalette() {
 </div>`;
 }
 
-function displayPalette(){
+function displayPalette() {
   colorBox1.style.backgroundColor = currentPalette.colors[0].hexCode
   colorLabel1.innerText = currentPalette.colors[0].hexCode
   if (currentPalette.colors[0].locked === false){
@@ -150,12 +140,7 @@ function newPalette() {
 }
 
 //additional functions live here
-
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-// TESTING!!!!
-// function testOnlyChangeUnlocked (){
-//   currentPalette.
-// }
