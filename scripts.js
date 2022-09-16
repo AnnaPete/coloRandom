@@ -19,6 +19,7 @@ var savedColorBox5 = document.querySelector('.saved-color-box-5')
 var deleteButton = document.querySelector('.delete-button-1')
 var savedPalettesDisplayContainer = document.querySelector('.saved-palettes-display-container')
 var colorCard = document.querySelector('.color-card')
+
 // var deleteButton = document.querySelector(`#${this.id}`)
 
 // goal: remove a selected save palette from DOM
@@ -54,19 +55,19 @@ class Color {
 
 class Palette {
   constructor() {
-    this.colors = [new Color, new Color, new Color, new Color, new Color]
-    this.id = 0
+    this.colors = [new Color(), new Color(), new Color(), new Color(), new Color()]
+    this.id = Date.now()
   }
 
   changeColors() {
-    console.log("this.id", this.id)
-    this.id++ 
+    console.log("this.id", this.id) 
     for (var i=0; i < this.colors.length; i++) {
-    if (this.colors[i].locked === false) {
-      this.colors[i] = new Color;
+      if (this.colors[i].locked === false) {  
+        this.colors[i] = new Color();
+      }  
     }
+    console.log('currentPalette :', currentPalette)
   }
-}
 
 //   lockColor() {
 //     alert("test")
@@ -78,10 +79,10 @@ class Palette {
 //   }
 }
 
-var currentPalette = null;
+var currentPalette;
 var savedPalettesList = [];
-var displayOnLoadPalette = new Palette()
-currentPalette = displayOnLoadPalette
+var displayOnLoadPalette = new Palette();
+currentPalette = displayOnLoadPalette;
 
 // event listeners live here
 window.addEventListener('load', displayPalette)
@@ -97,14 +98,18 @@ savedPalettesDisplayContainer.addEventListener('click', deleteSavedPalette)
 
 // event handlers belong here
 function deleteSavedPalette(event) {
-  var targetEvent = event.target
+  if (!event.target.id) {
+   return 
+  }
+  // var targetEvent = event.target
   // console.log("target event 1", targetEvent)
-  targetEvent = targetEvent.parentElement.parentElement
+  // targetEvent = targetEvent.parentElement.parentElement
   // console.log("target event 2", targetEvent)
   // console.log("children", this.children)
   // console.log("event", event)
   // console.log("target", event.target)
-  var targetEventId = event.target.id
+  var targetEventId = parseInt(event.target.id)
+  console.log(targetEventId)
   // console.log("target id", targetEventId)
   console.log("b4", savedPalettesList)
   for(var i = 0; i < savedPalettesList.length; i++) {
@@ -113,15 +118,15 @@ function deleteSavedPalette(event) {
     }
     console.log("after", savedPalettesList)
   }
-
+  showSavedPalette()
 }
 
 function savePalette() {
-  currentPalette.id++
-console.log(currentPalette)
+  console.log(currentPalette)
   savedPalettesList.push(currentPalette);
   console.log("savedPalettesList", savedPalettesList)
   showSavedPalette();
+  currentPalette = new Palette();
 }
 
 function lockColor(event) {
@@ -136,22 +141,25 @@ function lockColor(event) {
   }
 }
 function showSavedPalette() {
-  var savedColor1 = savedPalettesList[0].colors[0].hexCode;
-  var savedColor2 = savedPalettesList[0].colors[1].hexCode;
-  var savedColor3 = savedPalettesList[0].colors[2].hexCode;
-  var savedColor4 = savedPalettesList[0].colors[3].hexCode;
-  var savedColor5 = savedPalettesList[0].colors[4].hexCode;
-  savedPalettesDisplayContainer.innerHTML += 
-  `<div class="saved-palette-row">
-  <div class="mini-palette-box saved-color-box-1" style="background-color:${savedColor1}"></div>
-  <div class="mini-palette-box saved-color-box-2" style="background-color:${savedColor2}"></div>
-  <div class="mini-palette-box saved-color-box-3" style="background-color:${savedColor3}"></div>
-  <div class="mini-palette-box saved-color-box-4" style="background-color:${savedColor4}"></div>
-  <div class="mini-palette-box saved-color-box-5" style="background-color:${savedColor5}"></div>
-  <div class="delete-button-container">
-    <h4 id="${savedPalettesList.length}" class="delete-button">🗑</h4>
-  </div>
-</div>`;
+  savedPalettesDisplayContainer.innerHTML = '';
+  for (var i = 0; i < savedPalettesList.length; i++) {
+    var savedColor1 = savedPalettesList[i].colors[0].hexCode;
+    var savedColor2 = savedPalettesList[i].colors[1].hexCode;
+    var savedColor3 = savedPalettesList[i].colors[2].hexCode;
+    var savedColor4 = savedPalettesList[i].colors[3].hexCode;
+    var savedColor5 = savedPalettesList[i].colors[4].hexCode;
+    savedPalettesDisplayContainer.innerHTML += 
+    `<div class="saved-palette-row">
+      <div class="mini-palette-box saved-color-box-1" style="background-color:${savedColor1}"></div>
+      <div class="mini-palette-box saved-color-box-2" style="background-color:${savedColor2}"></div>
+      <div class="mini-palette-box saved-color-box-3" style="background-color:${savedColor3}"></div>
+      <div class="mini-palette-box saved-color-box-4" style="background-color:${savedColor4}"></div>
+      <div class="mini-palette-box saved-color-box-5" style="background-color:${savedColor5}"></div>
+      <div class="delete-button-container">
+        <button id="${savedPalettesList[i].id}" class="delete-button">🗑</button>
+      </div>
+    </div>`;
+  }
 }
 
 function displayPalette() {
