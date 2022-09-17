@@ -20,43 +20,7 @@ var deleteButton = document.querySelector('.delete-button-1')
 var savedPalettesDisplayContainer = document.querySelector('.saved-palettes-display-container')
 var colorCard = document.querySelector('.color-card')
 
-// classes belong here
-class Color {
-    constructor() {
-        this.locked = false;
-        this.hexCode = this.createHexCode();
-    }
-    createHexCode() {
-        let hexValues = ["A", "B", "C", "D", "E", "F", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        let hexArray = [];
-        for (var i = 0; i < 6; i++) {
-            var randomIndex = getRandomIndex(hexValues);
-            var randomValue = hexValues[randomIndex];
-            hexArray.push(randomValue);
-            var commaSeparated = hexArray.join("")
-            commaSeparated = `#${commaSeparated}`
-        }
-        return commaSeparated
-    }
-}
-
-class Palette {
-    constructor() {
-        this.colors = [new Color(), new Color(), new Color(), new Color(), new Color()]
-        this.id = Date.now()
-    }
-
-    changeColors() {
-        console.log("this.id", this.id)
-        for (var i = 0; i < this.colors.length; i++) {
-            if (this.colors[i].locked === false) {
-                this.colors[i] = new Color();
-            }
-        }
-    }
-}
-
-//data model variables 
+//data model variables
 var savedPalettesList = [];
 var currentPalette = new Palette();
 
@@ -174,4 +138,3 @@ function newPalette() {
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }
-
