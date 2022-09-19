@@ -3,7 +3,6 @@ class Palette {
       this.colors = [new Color(), new Color(), new Color(), new Color(), new Color()]
       this.id = Date.now()
     }
-
     changeColors() {
       console.log("this.id", this.id)
       for (var i=0; i < this.colors.length; i++) {

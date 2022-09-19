@@ -114,3 +114,7 @@
   background: transparent;
   border: none;
 }
+
+.color-box:hover {
+  cursor:pointer;
+}

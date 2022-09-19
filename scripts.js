@@ -58,6 +58,8 @@ function savePalette() {
 }
 
 function lockColor(event) {
+  console.log("current Palette", currentPalette);
+  console.log("event.target", event.target);
     for (var i = 0; i < currentPalette.colors.length; i++) {
         if (currentPalette.colors[i].hexCode === event.target.id) {
             currentPalette.colors[i].locked = !currentPalette.colors[i].locked;
