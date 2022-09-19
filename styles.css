@@ -109,3 +109,12 @@
   height: 50px;
   border: 2px solid black;
 }
+
+.delete-button {
+  background: transparent;
+  border: none;
+}
+
+.color-box:hover {
+  cursor:pointer;
+}
