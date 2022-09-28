@@ -12,6 +12,7 @@ We built a web application that will generate a random palette of colors that ca
 8. Type open index.html in the terminal
 9. Manipulate the application in the browser window
 
+Visit the site here: [coloRandom](https://annapete.github.io/coloRandom/)
 # Preview of App:
 Below you can see the functionality of the app as we lock the first 3 colors then generate new colors for the last 2 and save the palette. 
 - Before:
